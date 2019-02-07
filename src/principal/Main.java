@@ -7,7 +7,6 @@ import java.util.Scanner;
 import estoque.Clientes;
 import estoque.Pedidos;
 import estoque.Produtos;
-import processo.Transportadoras;
 
 public class Main {
 
@@ -317,6 +316,107 @@ public class Main {
 				break;
 			//===================================================//	
 				
+			//========================Opc 3=====================//
+			case 3:
+				//================Montador e Verficador============//
+				List<Integer>clientes_encontrados = new ArrayList<>();
+				StringBuilder numeros = new StringBuilder();
+				//=================================================//
+				
+				if(produtos.getSize() > 0 && clientes.getSize() > 0) {
+					vr_bloco2 = false;
+					//=====================Verificação de clientes com o nome digitado========================//
+					while(vr_bloco2 == false) {
+						System.out.print("Digite o nome do cliente: ");
+						nome = ler.nextLine();
+						
+						for(int i = 0; i < clientes.getSize(); i++) {
+							if(nome.equalsIgnoreCase(clientes.getNome(i))) {
+								System.out.println("Cliente Encontrado: ");
+								System.out.println("ID " + (i+1) + "#: \n"+ clientes.getCliente(i));
+								clientes_encontrados.add(i);
+								numeros.append((i+1) + " | \n");
+							}
+						}
+												
+						if(clientes_encontrados.size() > 0) {
+							System.out.println("\nID de clientes escontrados: " + numeros.toString());
+							vr_bloco2 = true;
+							
+							vr_bloco4 = false;
+							while(vr_bloco4 == false) {
+								System.out.println("Opções de Pedido: ");
+								System.out.println("==================");
+								System.out.print("Digite 1 dos ids encontrados: ");
+								Integer id_escolha = 0;
+								try {
+									id_escolha = Integer.parseInt(ler.nextLine()) - 1;
+								}
+								catch(Exception ex) {
+									System.out.println("\nDigite um valor válido!!!\nTecle Enter para continuar....\n");
+									ler.nextLine();
+									continue;
+								}								
+								
+								boolean vr_bloco5 = false;
+								
+								for(int i = 0; i < clientes_encontrados.size(); i++) {
+									if(clientes_encontrados.get(i) == id_escolha) {
+										vr_bloco4 = true;
+									}
+								}
+								
+								if(vr_bloco4 == true) {
+									
+								}
+								else {
+									System.out.println("\nPor favor escolha apenas um id válido!!!\nTecle Enter para continuar.....\n");
+									ler.nextLine();
+									vr_bloco4 = false;
+								}
+							}
+							
+						}
+						else {
+							vr_bloco3 = false;
+							while(vr_bloco3 == false) {
+								System.out.print("\nNenhum Cliente Encontrado, Deseja Realizar Outra Pesquisa?[S/N]: ");
+								String yesno = ler.nextLine();
+								
+								if(yesno.equalsIgnoreCase("s") || yesno.equalsIgnoreCase("sim")) {
+									vr_bloco2 = false;
+									vr_bloco3 = true;
+								}
+								else if(yesno.equalsIgnoreCase("n") || yesno.equalsIgnoreCase("não")) {
+									vr_bloco2 = true;
+									vr_bloco3 = true;
+									System.out.println("\nTecle Enter para continuar.....\n");
+									ler.nextLine();
+								}
+								else {
+									System.out.println("Digite uma opção válida!!!\nTecle Enter para continuar.....\n");
+									ler.nextLine();
+									vr_bloco3 = false;
+									vr_bloco2 = false;
+								}
+							}
+						}
+					}
+					//===================================================================================================//
+				}
+				else if(produtos.getSize() == 0){
+					System.out.println("\nNenhum Produto Em Estoque!!!\nTecle Enter para continuar....\n\n\n\n");
+					ler.nextLine();
+					vr1 = false;
+				}
+				else if(clientes.getSize() == 0) {
+					System.out.println("\nNenhum Cliente Cadastrado!!!\nTecle Enter para continuar....\n\n\n\n");
+					ler.nextLine();
+					vr1 = false;
+				}
+				
+				break;
+			//==================================================//
 			default:
 				
 				System.out.println("Nenhuma opção selecionada!!!\n");

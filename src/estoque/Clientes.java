@@ -54,7 +54,18 @@ public class Clientes {
 		return nomes.size();
 	}
 	
-	
+	public String getCliente(int cliente_id) {
+		StringBuilder montar = new StringBuilder();
+		
+		montar.append("=====================================\n");
+		montar.append("Nome: " + nomes.get(cliente_id) + "\n");
+		montar.append("Empresa: " + empresas.get(cliente_id) + "\n");
+		montar.append("Transportadora: " + Transportadoras.get(cliente_id));
+		montar.append("\n=====================================\n");
+
+		
+		return montar.toString();
+	}
 	
 	
 	
