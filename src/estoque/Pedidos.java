@@ -14,13 +14,13 @@ public class Pedidos {
 	private List<Produtos> Produtos = new ArrayList<>();
 	private Date Data_pedido;
 
-	public void addPedidos(Integer id, String nome, String empresa, String transportadora, Produtos prod) {
+	public void addPedidos(Integer id, String nome, String empresa, String transportadora, List<Produtos> prod) {
 
 		this.Id = id;
 		this.Nome = nome;
 		this.Empresa = empresa;
 		this.Transportadora = transportadora;
-		this.Produtos.add(prod);
+		this.Produtos = prod;
 		this.Data_pedido = new Date();
 
 	}

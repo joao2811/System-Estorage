@@ -49,7 +49,7 @@ public class Produtos {
 	public String toString() {
 		StringBuilder montar = new StringBuilder();
 		
-		for(int i = 0; i < id.size(); i++) {
+		for(int i = 0; i < this.id.size(); i++) {
 			montar.append("ID: " + id.get(i) + "\n");
 			montar.append("Product: " + produtos.get(i) + "\n");
 			montar.append("Quantity: " + quantity.get(i) + "\n");
@@ -59,6 +59,21 @@ public class Produtos {
 		}
 		
 		return montar.toString();
+	}
+	
+	public String getProd(int id) {
+		
+		StringBuilder montar = new StringBuilder();
+		
+		montar.append("===========================\n");
+		montar.append("ID: " + this.getID(id) + "\n");
+		montar.append("Produtct: " + this.getProduct(id) + "\n");
+		montar.append("Quantity: " + this.getQuantity(id) + "\n");
+		montar.append("Price Unity R$: " + String.format("%.2f %n", price.get(id)));
+		montar.append("===========================\n");
+		
+		return montar.toString();
+		
 	}
 	
 	public int getSize() {
